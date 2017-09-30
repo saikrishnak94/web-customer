@@ -1,0 +1,40 @@
+package com.CustomerControllers;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Autowired
+	private CustomerDAO customerDAO;
+	
+	@Override
+	@Transactional
+	public List<Customer> getCustomersfromService() {
+		return customerDAO.getCustomers();
+	}
+
+	@Override
+	@Transactional
+	public void saveCustomer(Customer cust) {
+		customerDAO.saveCustomer(cust);
+	}
+
+	@Override
+	@Transactional
+	public Customer getCustomer(int id) {
+		return customerDAO.getCustomer(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteCustomer(int id) {
+        customerDAO.deleteCustomer(id);
+	}
+
+}
